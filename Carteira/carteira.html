@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carteira Digital</title>
+  <link rel="stylesheet" href="carteira.css">
+</head>
+<body>
+  <div class="container">
+    <div id="perfil" onclick="showCarteira()">
+      <img src="fotoDeUsuario.jpg" class="foto"alt="Foto do usuário">
+      <p>Nome do Usuário</p>
+    </div>
+    <div id="carteira" style="display: none;">
+      <h1>Saldo:</h1>
+      <div>
+        <p id="saldo">R$ 0.00</p>
+      </div>
+      <button onclick="showDeposit()">Depositar</button>
+
+    </div>
+    <div id="optionsContainer" style="display: none;">
+      <h2>Opções de Pagamento:</h2>
+      <button onclick="showInput('debito')">Débito</button>
+      <button onclick="showInput('credito')">Crédito</button>
+      <button onclick="showInput('pix')">PIX</button>
+    </div>
+    <div id="inputContainer" style="display: none;">
+      <input type="number" id="valor" placeholder="Digite o valor">
+      <button onclick="deposit()">Confirmar</button>
+    </div>
+  </div>
+  <script src="carteira.js"></script>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="home.css">
+    <script src="https://kit.fontawesome.com/71efb22d99.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    
+    <header>
+        <div class="header-content">
+            <button id="toggleSidebar"><i class="fa-solid fa-bars"></i></button>
+            <label class="nome">Slash</label><img class="beer" src="beer.svg" alt="beer">
+        </div>
+
+    </header>
+    <div class="container">
+        <aside id="sidebar">
+            <!-- Conteúdo da barra lateral -->
+            <div id="sup">
+                <p class="elementoSup" id="lugares">Histórico de Lugares</p>
+                <p class="elementoSup" id="produtos">Histórico de Produtos</p>
+                <p class="elementoSup" id="amigos">Amigos</p>
+            </div>
+            <div id="inf">
+                <p class="elementoInf" id="perfil">Perfil</p>
+                <p class="elementoInf" id="config">Configurações</p>
+            </div>
+                
+        </aside>
+        <main>
+            <!-- Conteúdo principal -->
+            <div id="screen"></div>
+
+            
+            <button id="criar">Criar Slash</button>
+            <div id="mesa">
+                <p>=> Participantes </p>
+                <button>link da mesa</button>
+                <div class="pessoas" id="mostraConta">
+                    <img src="fotoDeUsuario.jpg" >
+                    <div class="dentroPessoas">
+                        <p>usuario 1</p>
+                        <p>RS0.00</p>
+
+                    </div>
+                    <div id="dentroPessoasProdutos">
+                        coca
+                        guarana
+                        batata
+                    </div>
+                </div>
+
+                <div class="pessoas" id="mostraConta">
+                    <img src="fotoDeUsuario.jpg" >
+                    <div class="dentroPessoas">
+                        <p>usuario 2</p>
+                        <p>RS0.00</p>
+
+                    </div>
+                    <div id="dentroPessoasProdutos">
+                        coca
+                        guarana
+                        batata
+                    </div>
+                </div>
+
+                <div class="pessoas" id="mostraConta">
+                    <img src="fotoDeUsuario.jpg" >
+                    <div class="dentroPessoas">
+                        <p>usuario 3</p>
+                        <p>RS0.00</p>
+
+                    </div>
+                    <div id="dentroPessoasProdutos">
+                        coca
+                        guarana
+                        batata
+                    </div>
+                </div>
+             </div>
+            
+        </main>
+  </div>
+
+
+
+</body>
+<script src="home.js"></script>
+</html>

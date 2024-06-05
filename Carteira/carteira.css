@@ -1,0 +1,36 @@
+body {
+  font-family: Arial, Helvetica, sans-serif; 
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+  
+.container {
+  text-align: center;
+}
+
+button {
+  padding: 10px 20px;
+  margin: 5px;
+  font-size: 16px;
+  background-color:rgb(102, 6, 158);
+  color: white;
+  border-radius: 8px;
+  border-color: rgb(50, 25, 83);
+  box-shadow:  0px 10px 40px #00000056;
+}
+
+.foto {
+  height: 100px;
+}
+
+input {
+  padding: 8px;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+  
+
