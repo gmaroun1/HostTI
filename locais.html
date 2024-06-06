@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="locais.css">
+    <title>Histórico de Bares Visitados</title>
+</head>
+<body>
+    <header>
+        <h1>Histórico de Bares Visitados</h1>
+    </header>
+
+    <div class="history-section">
+        <h2>Últimos Bares Visitados</h2>
+        <div class="bar-block">
+            <p><span class="bar-name">Bar do Zé</span></p>
+            <p class="bar-address">Rua das Flores, 123</p>
+            <p>Data da visita: 13/05/2024</p>
+        </div>
+
+        <!-- Barra de formulário para adicionar novo lugar -->
+        <div id="add-bar-form">
+            <h2>Adicionar Novo Lugar</h2>
+            <form id="bar-form">
+                <label for="bar-name">Nome do Bar:</label>
+                <input type="text" id="bar-name" name="bar-name" required><br><br>
+                <label for="bar-address">Endereço:</label>
+                <input type="text" id="bar-address" name="bar-address" required><br><br>
+                <label for="visit-date">Data da visita:</label>
+                <input type="date" id="visit-date" name="visit-date" required><br><br>
+                <button type="submit">Adicionar</button>
+            </form>
+        </div>
+
+        <div class="voltar">
+            <button><a href="index.html">Primeira Parte do Trabalho</a></button>   
+        </div>
+    </div>
+    <script src="locais.js"></script>
+</div> 
+</body>
+</html>

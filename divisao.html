@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nova Slash</title>
+    <link rel="stylesheet" href="divisao.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Nova Slash</h1>
+        <div id="users-container">
+            <!-- Users will be dynamically added here -->
+        </div>
+        <button id="add-product-btn">+ Produto</button>
+        <div id="product-form" class="hidden">
+            <input type="text" id="product-name" placeholder="Nome do Produto">
+            <input type="number" id="product-price" placeholder="Preço do Produto">
+            <div id="user-selection">
+                <!-- User checkboxes will be dynamically added here -->
+            </div>
+            <button id="confirm-product-btn">Confirmar Produto</button>
+        </div>
+        <div id="product-history">
+            <!-- Product history will be displayed here -->
+        </div>
+        <button id="close-bill-btn">Fechar Conta</button>
+        <div id="bill-summary" class="hidden">
+            <!-- Bill summary will be displayed here -->
+        </div>
+    </div>
+    <script src="divisao.js"></script>
+</body>
+</html>

@@ -144,3 +144,94 @@ main {
 #dentroPessoasProdutos {
   display: none;
 }
+
+.hidden {
+  display: none;
+}
+
+/* DIVISAO */
+
+
+
+.container {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+h1 {
+  text-align: center;
+}
+
+.user {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  background-color: #f2f2f2;
+  padding: 10px;
+  border-radius: 20px;
+  border-width: 2px;
+  border-color: rgb(50, 25, 83);;
+  border-style: solid;
+}
+
+.user img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.hidden {
+  display: none;
+}
+
+#product-form, #bill-summary {
+  margin-top: 20px;
+}
+
+#product-form input, #product-form button {
+  display: block;
+  width: 100%;
+  margin-bottom: 10px;
+  background: #9c89b6; /* background dos campos de resposta */
+  color: #f0ffffde; /* cor da letra dos campos de resposta */
+}
+
+#user-selection {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+#user-selection label {
+  margin-right: 10px;
+}
+
+#product-history {
+  margin-top: 20px;
+}
+
+#product-history ul {
+  list-style: none;
+  padding: 0;
+}
+
+#product-history li {
+  background-color: rgb(50, 25, 83); /* cor da box */
+  color: #f0ffffde; /* cor da letra */
+  padding: 10px;
+  border: 1px solid #ddd;
+  margin-bottom: 5px;
+}
+
+button:hover {
+  background-color: #d4af37;
+}

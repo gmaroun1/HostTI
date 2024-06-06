@@ -39,47 +39,32 @@
             <div id="mesa">
                 <p>=> Participantes </p>
                 <button>link da mesa</button>
-                <div class="pessoas" id="mostraConta">
-                    <img src="fotoDeUsuario.jpg" >
-                    <div class="dentroPessoas">
-                        <p>usuario 1</p>
-                        <p>RS0.00</p>
-
+                <div class="container">
+                    <h1>Nova Slash</h1>
+                    <div id="users-container">
+                        <!-- Users will be dynamically added here -->
                     </div>
-                    <div id="dentroPessoasProdutos">
-                        coca
-                        guarana
-                        batata
+                    <button id="add-product-btn">+ Produto</button>
+                    <div id="product-form" class="hidden">
+                        <input type="text" id="product-name" placeholder="Nome do Produto">
+                        <input type="number" id="product-price" placeholder="Preço do Produto">
+                        <div id="user-selection">
+                            <!-- User checkboxes will be dynamically added here -->
+                        </div>
+                        <button id="confirm-product-btn">Confirmar Produto</button>
                     </div>
-                </div>
-
-                <div class="pessoas" id="mostraConta">
-                    <img src="fotoDeUsuario.jpg" >
-                    <div class="dentroPessoas">
-                        <p>usuario 2</p>
-                        <p>RS0.00</p>
-
+                    <div id="product-history">
+                        <!-- Product history will be displayed here -->
                     </div>
-                    <div id="dentroPessoasProdutos">
-                        coca
-                        guarana
-                        batata
+                    <button id="close-bill-btn">Fechar Conta</button>
+                    <div id="bill-summary" class="hidden">
+                        <!-- Bill summary will be displayed here -->
                     </div>
                 </div>
 
-                <div class="pessoas" id="mostraConta">
-                    <img src="fotoDeUsuario.jpg" >
-                    <div class="dentroPessoas">
-                        <p>usuario 3</p>
-                        <p>RS0.00</p>
+               
 
-                    </div>
-                    <div id="dentroPessoasProdutos">
-                        coca
-                        guarana
-                        batata
-                    </div>
-                </div>
+                
              </div>
             
         </main>
