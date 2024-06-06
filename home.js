@@ -23,7 +23,7 @@ function leDados () {
 function usuario() {
     let screen = document.getElementById('screen');
     let strHtmlHome = '';
-    strHtmlHome+= `<h1>Logado como ${usuarioLogado.email}</h1> <h3>Olá ${usuarioLogado.nome}</h3>`
+    strHtmlHome+= `<h2>Logado como ${usuarioLogado.email}</h2> <h3>Olá ${usuarioLogado.nome}</h3>`
     strHtmlHome+= 
     screen.innerHTML = strHtmlHome;
 
