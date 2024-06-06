@@ -1,7 +1,7 @@
 let usuarioLogado = {};
 function isLogged() {
     usuarioLogado = JSON.parse(localStorage.getItem('session'));
-    if (!usuarioLogado) window.location.assign('http://127.0.0.1:5500/login.html');
+    if (!usuarioLogado) window.location.assign('/login.html');
 }
 
 isLogged();
