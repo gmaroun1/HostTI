@@ -1,77 +1,64 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
-    <link rel="stylesheet" href="home.css">
-    <script src="https://kit.fontawesome.com/71efb22d99.js" crossorigin="anonymous"></script>
-</head>
-<body>
+    <title>Sign up</title>
+    <link rel="stylesheet" href="registro.css">
     
-    <header>
-        <div class="header-content">
-            <button id="toggleSidebar"><i class="fa-solid fa-bars"></i></button>
-            <label class="nome">Slash</label><img class="beer" src="beer.svg" alt="beer">
-        </div>
+</head>
 
-    </header>
-    <div class="container">
-        <aside id="sidebar">
-            <!-- Conteúdo da barra lateral -->
-            <div id="sup">
-                <p class="elementoSup" id="lugares">Histórico de Lugares</p>
-                <p class="elementoSup" id="produtos">Histórico de Produtos</p>
-                <p class="elementoSup" id="amigos">Amigos</p>
-            </div>
-            <div id="inf">
-                <p class="elementoInf" id="perfil">Perfil</p>
-                <p class="elementoInf" id="config">Configurações</p>
-            </div>
-                
-        </aside>
-        <main>
-            <!-- Conteúdo principal -->
-            <div id="screen"></div>
-
-            
-            <button id="criar">Criar Slash</button>
-            <div id="mesa">
-                <p>=> Participantes </p>
-                <button>link da mesa</button>
-                <div class="container">
-                    <h1>Nova Slash</h1>
-                    <div id="users-container">
-                        <!-- Users will be dynamically added here -->
-                    </div>
-                    <button id="add-product-btn">+ Produto</button>
-                    <div id="product-form" class="hidden">
-                        <input type="text" id="product-name" placeholder="Nome do Produto">
-                        <input type="number" id="product-price" placeholder="Preço do Produto">
-                        <div id="user-selection">
-                            <!-- User checkboxes will be dynamically added here -->
-                        </div>
-                        <button id="confirm-product-btn">Confirmar Produto</button>
-                    </div>
-                    <div id="product-history">
-                        <!-- Product history will be displayed here -->
-                    </div>
-                    <button id="close-bill-btn">Fechar Conta</button>
-                    <div id="bill-summary" class="hidden">
-                        <!-- Bill summary will be displayed here -->
-                    </div>
+<body>
+    <div class="box">
+        <div class="corpo"> 
+            <h2 class="titulo">Criar conta</h2>
+            <h4 class="subtitulo">Já se registrou? <button class="redireciona-login"><a href="login.html">Login</a></button></h4>
+            <div class="inner-box">
+                <div class="campo">
+                    <p>NOME</p>
+                    <input type="text" id="nome" placeholder="Nome">
                 </div>
 
-               
+                <div class="campo">
+                    <p>EMAIL</p>
+                    <input type="email" id="email" placeholder="Email">
+                </div>
 
+                <div class="campo">
+                    <p>SENHA</p>
+                    <input type="password" id="senha" placeholder="Senha">
+                </div>
+
+                <div class="campo">
+                    <p>NASCIMENTO</p>
+                    <input type="date" id="data" placeholder="Data">
+                </div>
+
+                <div class="sign-up">
+                    <button id="sign-up">Sign up</button>
+                </div>
                 
-             </div>
-            
-        </main>
-  </div>
+                <!--
+                Apenas para debug
+                <div>
+                    <button id="exibeDados">exibe</button>
+                    <button id="ocultaDados">oculta</button>
+                </div>
+                -->
 
+                <div id="tela"></div>
+            </div>
+        </div>
 
+    </div>
+    <div class="slash">
+        <div class="slash-content">
+            <h2 class="nomeslash">SLASH</h2>
+            <img src="beer.svg" class="slashImagem" alt="beerAnimacao">
+        </div>
 
+    </div>
+    
+    <script src="registro.js"></script>
 </body>
-<script src="home.js"></script>
 </html>
