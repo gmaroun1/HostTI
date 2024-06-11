@@ -2,9 +2,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const container = document.querySelector('.container-link');
     const inviteLinkDiv = document.getElementById('invite-link');
     const copyLinkBtn = document.getElementById('copy-link');
-    const groupMembersDiv = document.getElementById('group-members');
 
-    let groupMembers = [];
 
     container.addEventListener('click', function(event) {
         if (event.target && event.target.id === 'generate-invite') {
@@ -27,39 +25,7 @@ document.addEventListener('DOMContentLoaded', function() {
         alert('Link copied to clipboard!');
     });
 
-    function addMember() {
-        const newMember = {
-            id: groupMembers.length + 1,
-            name: 'Member ' + (groupMembers.length + 1)
-        };
-        groupMembers.push(newMember);
-        updateGroupMembers();
-    }
-
-    function updateGroupMembers() {
-        groupMembersDiv.innerHTML = '';
-        if (groupMembers.length === 0) {
-            groupMembersDiv.textContent = 'No members in the group yet.';
-        } else {
-            const membersList = document.createElement('ul');
-            groupMembers.forEach(function(member) {
-                const listItem = document.createElement('li');
-                listItem.textContent = member.name;
-                membersList.appendChild(listItem);
-            });
-            groupMembersDiv.appendChild(membersList);
-        }
-    }
-
-    function simulateMemberAdd() {
-        // Simulate adding a member when the link is clicked
-        const inviteLinkAnchor = document.getElementById('invite-link-anchor');
-        inviteLinkAnchor.addEventListener('click', function(event) {
-            event.preventDefault(); // Prevent the link from navigating away
-            addMember(); // Simulate adding a member
-            alert('Member added to the group!');
-        });
-    }
+    
 
 });
 

@@ -22,7 +22,7 @@ function login() {
         if (findCadastro.senha !== strSenha) alert('Senha incorreta!');
         else {
             localStorage.setItem('session', JSON.stringify(findCadastro));
-            window.location.assign('http://127.0.0.1:5500/home.html');
+            window.location.assign('home.html');
             
         }
     }
