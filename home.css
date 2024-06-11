@@ -124,7 +124,7 @@ main {
 
 /* Criação da mesa*/ 
 
-.ocultar {
+#dados {
   display: none;
 }
 
@@ -230,8 +230,4 @@ h1 {
   padding: 10px;
   border: 1px solid #ddd;
   margin-bottom: 5px;
-}
-
-button:hover {
-  background-color: #d4af37;
 }

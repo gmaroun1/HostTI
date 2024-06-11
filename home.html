@@ -6,6 +6,7 @@
     <title>Home</title>
     <link rel="stylesheet" href="home.css">
     <script src="https://kit.fontawesome.com/71efb22d99.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="Feedback.css">
 </head>
 <body>
     
@@ -38,38 +39,67 @@
             
             
             <button id="criar">Criar Slash</button>
+            
+            <div id="dados">
+                <input type="text" id="local" placeholder="Local">
+                <input type="text" id="endereco" placeholder="Endereço">
+                <input type="submit" id="submit">
+            </div>
+            
+            
+            
+            
             <div id="mesa">
-                <p>=> Participantes </p>
                 <div class="container-link">
                     <h1>Slash Group</h1>
-                    <button id="generate-invite">Generate Invite</button>
-                    <div class="invite-container">
-                        <div id="invite-link" class="invite-link"></div>
-                        <button id="copy-link">Copy Link</button>
-                    </div>
-                    <div id="group-members" class="group-members"></div>
+                    <span>
+                        <button id="generate-invite">Generate Invite</button>
+                        <p id="invite-link" class="invite-link"></p>
+                    </span>
+                    <span><button id="copy-link">Copy Link</button></span>
+                    
+                    
                 </div>
-                <button class="feedback-btn"><a href="Feedback.html">Nos dê seu Feedback!</a></button>
                 <div class="container">
-                    <h1>Nova Slash</h1>
                     <div id="users-container">
-                        <!-- Users will be dynamically added here -->
+                        
                     </div>
                     <button id="add-product-btn">+ Produto</button>
                     <div id="product-form" class="hidden">
                         <input type="text" id="product-name" placeholder="Nome do Produto">
                         <input type="number" id="product-price" placeholder="Preço do Produto">
                         <div id="user-selection">
-                            <!-- User checkboxes will be dynamically added here -->
+                            
                         </div>
                         <button id="confirm-product-btn">Confirmar Produto</button>
                     </div>
                     <div id="product-history">
-                        <!-- Product history will be displayed here -->
+                        
                     </div>
                     <button id="close-bill-btn">Fechar Conta</button>
                     <div id="bill-summary" class="hidden">
-                        <!-- Bill summary will be displayed here -->
+                        
+                    </div>
+                    <div class="containerFeedback" style="display: none;" id="feedback">
+                        <h3>Feedback do Cliente</h3>
+                        <div class="rating" id="feedback" style="display: none;">
+                            <input type="radio" name="rating" id="star6" value="6">
+                            <label for="star6"></label>
+                            <input type="radio" name="rating" id="star5" value="5">
+                            <label for="star5"></label>
+                            <input type="radio" name="rating" id="star4" value="4">
+                            <label for="star4"></label>
+                            <input type="radio" name="rating" id="star3" value="3">
+                            <label for="star3"></label>
+                            <input type="radio" name="rating" id="star2" value="2">
+                            <label for="star2"></label>
+                            <input type="radio" name="rating" id="star1" value="1">
+                            <label for="star1"></label>
+                        </div>
+                        <textarea id="comment" placeholder="Deixe seu comentário aqui..."></textarea>
+                        <button onclick="submitFeedback()">Enviar Feedback</button>
+                        <button onclick="viewFeedbacks()">Visualizar Feedbacks</button>
+                        <div id="feedback-list" style="margin-top: 20px;"></div>
                     </div>
                 </div>
                 
@@ -86,4 +116,5 @@
 </body>
 <script src="Clink.js"></script>
 <script src="home.js"></script>
+<script src="Feedback.js"></script>
 </html>

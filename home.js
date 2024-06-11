@@ -26,12 +26,61 @@ function usuario() {
     strHtmlHome+= `<h2>Logado como ${usuarioLogado.email}</h2> <h3>Olá ${usuarioLogado.nome}</h3>`
     strHtmlHome+= 
     screen.innerHTML = strHtmlHome;
+    
+    
+    }
+    
+    usuario();
 
 
+// LOCAIS
+
+function leDados () {
+    let strDados = localStorage.getItem('locais');
+    let objDados = {};
+    
+    
+    if (strDados) {
+        objDados = JSON.parse (strDados);
+    }
+    else {
+        objDados = { locais: []
+        }
+    }
+
+    return objDados;
 }
 
-usuario();
+function salvaDados (dados) {
+    localStorage.setItem ('locais', JSON.stringify (dados));
+}
 
+function novaSlash() {
+    
+    let objDados = leDados();
+
+    let a = document.getElementById('local').value;
+    let b = document.getElementById('endereco').value;
+    
+    if (a == "" || b == "") {
+        alert('Digite um valor valido!');
+        return 0;
+    }
+    else {
+        let novoSlash = {
+            local: a,
+            endereço: b
+        };
+        
+        objDados.locais.push (novoSlash);
+        salvaDados(objDados);
+
+        return 1;
+        
+        
+    }    
+}
+    
 
 // DIVISAO
 
@@ -138,5 +187,18 @@ document.getElementById('toggleSidebar').addEventListener('click', function() {
 document.getElementById('criar').addEventListener('click', function () {
     this.style.display = 'none';
 
-    document.getElementById('mesa').style.display = 'block';
+    document.getElementById('dados').style.display = 'block';
+});
+
+document.getElementById('submit').addEventListener('click', function () {
+
+    if (novaSlash()) {
+        this.style.display = 'none';
+        document.getElementById('dados').style.display = 'none';
+        document.getElementById('mesa').style.display = 'block';
+    }
+});
+
+document.getElementById('close-bill-btn').addEventListener('click', function() {
+    document.getElementById('feedback').style.display = 'block';
 });

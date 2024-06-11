@@ -1,0 +1,67 @@
+.containerFeedback {
+    width: 80%;
+    margin: 50px auto;
+    text-align: center;
+    background-color: #ffbb00;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    color: #6a0dad;
+    margin-bottom: 30px;
+}
+
+.rating {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+input[type="radio"] {
+    display: none;
+}
+
+label {
+    cursor: pointer;
+    font-size: 40px;
+    color: #000000;
+    transition: color 0.3s;
+}
+
+label:before {
+    content: '\2606';
+}
+
+input[type="radio"]:checked ~ label:before {
+    content: '\2605';
+}
+
+input[type="radio"]:checked ~ label {
+    color: #6a0dad;
+}
+
+textarea {
+    width: calc(100% - 20px);
+    height: 150px;
+    margin-bottom: 20px;
+    padding: 10px;
+    resize: none;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+
+button:hover {
+    background-color: #45a049;
+}
+
+/* Estilos para a lista de feedbacks */
+#feedback-list div {
+    border: 1px solid #000;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #fff;
+}
+
