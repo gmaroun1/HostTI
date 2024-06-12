@@ -85,10 +85,12 @@ function novaSlash() {
 // DIVISAO
 
 document.addEventListener("DOMContentLoaded", function () {
+    var local = localStorage.getItem('locais')
+    
     const users = [
-        { id: 1, name: "User 1", pricePaid: 0, img: "fotoDeUsuario.jpg", products: [] },
-        { id: 2, name: "User 2", pricePaid: 0, img: "fotoDeUsuario.jpg", products: [] },
-        { id: 3, name: "User 3", pricePaid: 0, img: "fotoDeUsuario.jpg", products: [] }
+        { id: 1, name: "User 1", pricePaid: 0, img: "../images/fotoDeUsuario.jpg", products: [] },
+        { id: 2, name: "User 2", pricePaid: 0, img: "../images/fotoDeUsuario.jpg", products: [] },
+        { id: 3, name: "User 3", pricePaid: 0, img: "../images/fotoDeUsuario.jpg", products: [] }
     ];
 
     const serviceFeePercentage = 0.1; // 10%
