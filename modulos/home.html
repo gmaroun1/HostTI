@@ -41,7 +41,6 @@
             <button id="criar">Criar Slash</button>
             
             <div id="dados">
-                <span id="message"></span>
 
                 <input type="text" id="CEP" placeholder="CEP">
                 <!--
@@ -73,10 +72,9 @@
                     <div id="users-container">
                         
                     </div>
-                    <button id="add-person-btn">+ Adicionar Pessoa</button>
-                    <div id="person-form" class="hidden">
-                        <input type="text" id="person-name" placeholder="Nome da Pessoa">
-                        <button id="confirm-person-btn">Adicionar Pessoa</button>
+                    <button id="add-person-btn" onclick="addPerson()">+ Adicionar Pessoa</button>
+                    <div id="person-form">
+                        
                     </div>
                     <button id="add-product-btn">+ Produto</button>
                     <div id="product-form" class="hidden">

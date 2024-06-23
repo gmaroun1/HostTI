@@ -62,24 +62,7 @@ function leDados () {
 function salvaDados (dados) {
     localStorage.setItem ('locais', JSON.stringify (dados));
 }
-/*
-cep.addEventListener('focusout', () => {
-    
-    try {
-        const onlyNumbers = /^[0-9]+$/;
-        const cepValid = /^[0-9]{8}$/;
-    
-        if(onlyNumbers.test(cep.val) || !cepValid.test(cep.value)) {
-            throw {cep_error:'cel unvalid'};
-        }
 
-    } catch (error) {
-        if
-    }
-    
-
-
-})*/
 
 async function novaSlash() {
     //let objDados = leDados();
@@ -95,7 +78,6 @@ async function novaSlash() {
         .then(res => {
             return res.json()
         }).then((data) => {
-            console.log('oi');
             if (data.erro) {
                 alert('erro');
             }
@@ -109,7 +91,6 @@ async function novaSlash() {
 
         })
 
-        console.log(novaSlash);
 
         dadosCEP.innerHTML = `
         <span>Rua: ${novaSlash.rua}</span>
@@ -129,41 +110,55 @@ async function novaSlash() {
 }
     
 function enviarEndereco() {
-    console.log('oi');
     document.getElementById('dados').style.display = 'none';
     document.getElementById('mesa').style.display = 'block';
 }
 
 // DIVISAO
 
+function addPerson() {
+    document.getElementById('person-form').innerHTML = `
+    <input type="text" id="person-name" placeholder="Nome da Pessoa">
+    <button id="confirm-person-btn" onclick="confirmPessoa()">Adicionar Pessoa</button>`;
+
+}
+
+
+function confirmPessoa() {
+    let nome = document.getElementById('person-name').value;
+    users.push({id: users.length, name: nome, pricePaid: 0, img: "../images/fotoDeUsuario.jpg", products: []});
+    renderUsers();
+}
+
+var usuario = JSON.parse(localStorage.getItem('session'));
+const users = [
+    { id: 0, name: usuario.nome, pricePaid: 0, img: "../images/fotoDeUsuario.jpg", products: [] }
+];
+
+function renderUsers() {
+    const usersContainer = document.getElementById("users-container");
+    usersContainer.innerHTML = "";
+    users.forEach(user => {
+        const userDiv = document.createElement("div");
+        userDiv.className = "user";
+        userDiv.innerHTML = `
+        <img src="${user.img}" alt="${user.name}">
+        <div class="user-info">
+        <span>${user.name}</span>
+        <span>Preço Pago: R$ <span class="price-paid">${user.pricePaid.toFixed(2)}</span></span>
+        </div>
+        `;
+        usersContainer.appendChild(userDiv);
+    });
+}
 document.addEventListener("DOMContentLoaded", function () {
-    var local = localStorage.getItem('locais')
+
     
-    const users = [
-        { id: 1, name: "User 1", pricePaid: 0, img: "../images/fotoDeUsuario.jpg", products: [] },
-        { id: 2, name: "User 2", pricePaid: 0, img: "../images/fotoDeUsuario.jpg", products: [] },
-        { id: 3, name: "User 3", pricePaid: 0, img: "../images/fotoDeUsuario.jpg", products: [] }
-    ];
+
 
     const serviceFeePercentage = 0.1; // 10%
     const appFeePercentage = 0.01; // 1%
     
-    function renderUsers() {
-        const usersContainer = document.getElementById("users-container");
-        usersContainer.innerHTML = "";
-        users.forEach(user => {
-            const userDiv = document.createElement("div");
-            userDiv.className = "user";
-            userDiv.innerHTML = `
-            <img src="${user.img}" alt="${user.name}">
-            <div class="user-info">
-            <span>${user.name}</span>
-            <span>Preço Pago: R$ <span class="price-paid">${user.pricePaid.toFixed(2)}</span></span>
-            </div>
-            `;
-            usersContainer.appendChild(userDiv);
-        });
-    }
     
     function renderUserSelection() {
         const userSelection = document.getElementById("user-selection");
