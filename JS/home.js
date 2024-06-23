@@ -1,7 +1,15 @@
+/*
+const cep = document.querySelector('#CEP');
+const rua = document.querySelector('#rua');
+const bairro = document.querySelector('#bairro');
+const cidade = document.querySelector('#cidade');
+*/
+
+
 let usuarioLogado = {};
 function isLogged() {
     usuarioLogado = JSON.parse(localStorage.getItem('session'));
-    if (!usuarioLogado) window.location.assign('/login.html');
+    if (!usuarioLogado) window.location.assign('../modulos/login.html');
 }
 
 isLogged();
@@ -54,33 +62,77 @@ function leDados () {
 function salvaDados (dados) {
     localStorage.setItem ('locais', JSON.stringify (dados));
 }
-
-function novaSlash() {
+/*
+cep.addEventListener('focusout', () => {
     
-    let objDados = leDados();
-
-    let a = document.getElementById('local').value;
-    let b = document.getElementById('endereco').value;
+    try {
+        const onlyNumbers = /^[0-9]+$/;
+        const cepValid = /^[0-9]{8}$/;
     
-    if (a == "" || b == "") {
-        alert('Digite um valor valido!');
-        return 0;
+        if(onlyNumbers.test(cep.val) || !cepValid.test(cep.value)) {
+            throw {cep_error:'cel unvalid'};
+        }
+
+    } catch (error) {
+        if
     }
-    else {
-        let novoSlash = {
-            local: a,
-            endereço: b
-        };
-        
-        objDados.locais.push (novoSlash);
-        salvaDados(objDados);
+    
 
-        return 1;
-        
+
+})*/
+
+async function novaSlash() {
+    //let objDados = leDados();
+
+    let a = document.getElementById('CEP').value;
+    let novaSlash = {};
+    if (a == "" || a.length !== 8) {
+        alert('Digite um valor valido!');
+        }
+    
+    else {
+        await fetch(`https://viacep.com.br/ws/${a}/json/`)
+        .then(res => {
+            return res.json()
+        }).then((data) => {
+            console.log('oi');
+            if (data.erro) {
+                alert('erro');
+            }
+            else {
+                novaSlash = {
+                    rua: data.logradouro,
+                    bairro: data.bairro,
+                    cidade: data.localidade
+                }
+            }
+
+        })
+
+        console.log(novaSlash);
+
+        dadosCEP.innerHTML = `
+        <span>Rua: ${novaSlash.rua}</span>
+        <span>Bairro: ${novaSlash.bairro}</span>
+        <span>Rua: ${novaSlash.cidade}</span>
+        <button id="submit" onclick="enviarEndereco()">Enviar</button>
+        `
+
+        /*
+        if (novaSlash != {}) {
+            objDados.locais.push (novaSlash);
+            salvaDados(objDados);
+        }*/
+
         
     }    
 }
     
+function enviarEndereco() {
+    console.log('oi');
+    document.getElementById('dados').style.display = 'none';
+    document.getElementById('mesa').style.display = 'block';
+}
 
 // DIVISAO
 
@@ -178,6 +230,15 @@ document.addEventListener("DOMContentLoaded", function () {
     renderUsers();
 });
 
+document.addEventListener('DOMContentLoaded', function() {
+    let escuro = localStorage.getItem('darkModeEnabled') === 'true';
+  
+    if (escuro) {
+      document.body.classList.add('dark-mode'); 
+      document.header.classList.add('dark-mode'); 
+    }
+  });
+
 
 
 // Config dos botões
@@ -192,14 +253,7 @@ document.getElementById('criar').addEventListener('click', function () {
     document.getElementById('dados').style.display = 'block';
 });
 
-document.getElementById('submit').addEventListener('click', function () {
 
-    if (novaSlash()) {
-        this.style.display = 'none';
-        document.getElementById('dados').style.display = 'none';
-        document.getElementById('mesa').style.display = 'block';
-    }
-});
 
 document.getElementById('close-bill-btn').addEventListener('click', function() {
     document.getElementById('feedback').style.display = 'block';

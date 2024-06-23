@@ -23,13 +23,13 @@
         <aside id="sidebar">
             <!-- Conteúdo da barra lateral -->
             <div id="sup">
-                <p class="elementoSup" id="lugares">Histórico de Lugares</p>
-                <p class="elementoSup" id="produtos">Histórico de Produtos</p>
-                <p class="elementoSup" id="amigos">Amigos</p>
+                <p class="elementoSup" id="lugares"><a href="locais.html">Histórico de Lugares</a></p>
+                <p class="elementoSup" id="produtos"><a href="produtos.html">Histórico de Produtos</a></p>
+                <p class="elementoSup" id="amigos"><a href="amigos.html">Amigos</a></p>
             </div>
             <div id="inf">
-                <p class="elementoInf" id="perfil">Perfil</p>
-                <p class="elementoInf" id="config">Configurações</p>
+                <p class="elementoInf" id="perfil"><a href="perfil.html">Perfil</a></p>
+                <p class="elementoInf" id="config"><a href="config.html">Configurações</a></p>
             </div>
             
         </aside>
@@ -41,9 +41,18 @@
             <button id="criar">Criar Slash</button>
             
             <div id="dados">
-                <input type="text" id="local" placeholder="Local">
-                <input type="text" id="endereco" placeholder="Endereço">
-                <input type="submit" id="submit">
+                <span id="message"></span>
+
+                <input type="text" id="CEP" placeholder="CEP">
+                <!--
+                    <input type="text" id="rua" placeholder="Logradouro">
+                    <input type="text" id="bairro" placeholder="Bairro">
+                    <input type="text" id="cidade" placeholder="Cidade">
+                    -->
+                    
+                <div id="dadosCEP"></div>
+                    <button id="buscaCEP" onclick="novaSlash()">Buscar</button> 
+                
             </div>
             
             
@@ -64,13 +73,16 @@
                     <div id="users-container">
                         
                     </div>
+                    <button id="add-person-btn">+ Adicionar Pessoa</button>
+                    <div id="person-form" class="hidden">
+                        <input type="text" id="person-name" placeholder="Nome da Pessoa">
+                        <button id="confirm-person-btn">Adicionar Pessoa</button>
+                    </div>
                     <button id="add-product-btn">+ Produto</button>
                     <div id="product-form" class="hidden">
                         <input type="text" id="product-name" placeholder="Nome do Produto">
                         <input type="number" id="product-price" placeholder="Preço do Produto">
-                        <div id="user-selection">
-                            
-                        </div>
+                        <div id="user-selection"></div>
                         <button id="confirm-product-btn">Confirmar Produto</button>
                     </div>
                     <div id="product-history">
@@ -117,4 +129,5 @@
 <script src="../JS/Clink.js"></script>
 <script src="../JS/home.js"></script>
 <script src="../JS/Feedback.js"></script>
+<script src="../JS/viacep.js"></script>
 </html>

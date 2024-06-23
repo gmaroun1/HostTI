@@ -1,0 +1,114 @@
+:root {
+    --primary-color: #6a0dad; 
+    --secondary-color: #c09c0a;
+    --background-color:  rgb(255, 255, 255);
+    --text-color: #333;
+}
+
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+.profile-container {
+    max-width: 800px;
+    margin: 20px auto;
+    background-color: #201f1f;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.profile-header {
+    background-color: var(--primary-color);
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+    position: relative;
+}
+
+.profile-pic {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 5px solid #4d3f3f;
+    position: absolute;
+    top: 20px;
+    left: calc(50% - 75px);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.profile-name {
+    margin-top: 200px;
+    font-size: 2em;
+    font-weight: bold;
+}
+
+.social-links {
+    margin-top: 10px;
+}
+
+.social-link {
+    margin: 0 10px;
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    display: inline-block;
+    transition: background 0.3s ease;
+}
+
+.social-link.instagram { background-color: #e1306c; }
+.social-link.facebook { background-color: #3b5998; }
+.social-link.twitter { background-color: #1da1f2; }
+
+.social-link:hover {
+    background-color: #fff;
+    color: #333;
+}
+
+#toggle-theme {
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.profile-content {
+    padding: 20px;
+}
+
+section {
+    margin-bottom: 20px;
+}
+
+h2 {
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--secondary-color);
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    background-color: var(--secondary-color);
+    margin: 5px 0;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+body.dark-mode {
+    --background-color: #000000;
+    --text-color: #ffffff;
+    --primary-color: #c09c0a; 
+    --secondary-color: #6a0dad; 
+}
