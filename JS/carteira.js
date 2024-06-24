@@ -1,17 +1,21 @@
 let saldo = 0;
 
-function showDeposit() {
-    document.getElementById('optionsContainer').style.display = 'block';
-    document.getElementById('alternar').style.display = 'block';
-}
-
-function showInput(opcao) {
-  document.getElementById('inputContainer').style.display = 'block';
-}
-
 function showCarteira() {
   document.getElementById('carteira').style.display = 'block';
 }
+
+function showDeposit() {
+  document.getElementById('optionsContainer').style.display = 'block';
+}    
+
+function showInput(opcao) {
+  if (opcao === 'debito' || opcao === 'credito' || opcao === 'pix') {
+    document.getElementById('inputContainer').style.display = 'block';
+    document.getElementById('optionsContainer').style.display = 'none'; // Esconder as opções de pagamento ao mostrar o input
+}
+}
+
+
 
 
 function deposit() {

@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
-    <link rel="stylesheet" href="../CSS/home.css">
     <script src="https://kit.fontawesome.com/71efb22d99.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../CSS/home.css">
     <link rel="stylesheet" href="../CSS/Feedback.css">
+    <link rel="stylesheet" href="../CSS/carteira.css">
 </head>
 <body>
     
@@ -14,6 +15,7 @@
         <div class="header-content">
             <button id="toggleSidebar"><i class="fa-solid fa-bars"></i></button>
             <label class="nome">Slash</label><img class="beer" src="../images/beer.svg" alt="beer">
+            
         </div>
 
     </header>
@@ -21,7 +23,6 @@
     
     <div class="container">
         <aside id="sidebar">
-            <!-- Conteúdo da barra lateral -->
             <div id="sup">
                 <p class="elementoSup" id="lugares"><a href="locais.html">Histórico de Lugares</a></p>
                 <p class="elementoSup" id="produtos"><a href="produtos.html">Histórico de Produtos</a></p>
@@ -34,20 +35,46 @@
             
         </aside>
         <main>
-            <!-- Conteúdo principal -->
+            <div class="corpo"></div>
             <div id="screen"></div>
+            <label class="corpo" style="float: right;">
+                <div id="perfil" onclick="showCarteira()">
+                    <p style="padding: 10px 20px;
+                    margin: 5px;
+                    text-align: center;
+                    font-size: 16px;
+                    background-color:rgb(102, 6, 158);
+                    color: white;
+                    border-radius: 8px;
+                    border-color: rgb(50, 25, 83);
+                    box-shadow:  0px 10px 40px #00000056;">Carteira</p>
+                </div>
+                <div id="carteira" style="display: none;">
+                    <h1>Saldo:</h1>
+                    <div>
+                      <p id="saldo">R$ 0.00</p>
+                    </div>
+                    <button onclick="showDeposit()">Depositar</button>
+              
+                </div>
+                <div id="optionsContainer" style="display: none;">
+                    <h2>Opções de Pagamento:</h2>
+                    <button onclick="showInput('debito')">Débito</button>
+                    <button onclick="showInput('credito')">Crédito</button>
+                    <button onclick="showInput('pix')">PIX</button>
+                </div>
+                <div id="inputContainer" style="display: none;">
+                    <input type="number" id="valor" placeholder="Digite o valor">
+                    <button onclick="deposit()">Confirmar</button>
+                </div>
+            </label>
             
             
             <button id="criar">Criar Slash</button>
             
-            <div id="dados">
+            <div id="dados" style="float: left;">
 
                 <input type="text" id="CEP" placeholder="CEP">
-                <!--
-                    <input type="text" id="rua" placeholder="Logradouro">
-                    <input type="text" id="bairro" placeholder="Bairro">
-                    <input type="text" id="cidade" placeholder="Cidade">
-                    -->
                     
                 <div id="dadosCEP"></div>
                     <button id="buscaCEP" onclick="novaSlash()">Buscar</button> 
@@ -124,5 +151,5 @@
 <script src="../JS/Clink.js"></script>
 <script src="../JS/home.js"></script>
 <script src="../JS/Feedback.js"></script>
-<script src="../JS/viacep.js"></script>
+<script src="../JS/carteira.js"></script>
 </html>

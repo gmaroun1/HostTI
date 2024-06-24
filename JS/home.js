@@ -1,10 +1,3 @@
-/*
-const cep = document.querySelector('#CEP');
-const rua = document.querySelector('#rua');
-const bairro = document.querySelector('#bairro');
-const cidade = document.querySelector('#cidade');
-*/
-
 
 let usuarioLogado = {};
 function isLogged() {
@@ -93,9 +86,11 @@ async function novaSlash() {
 
 
         dadosCEP.innerHTML = `
-        <span>Rua: ${novaSlash.rua}</span>
-        <span>Bairro: ${novaSlash.bairro}</span>
-        <span>Rua: ${novaSlash.cidade}</span>
+        <ul>
+            <li>Rua: ${novaSlash.rua}</li>
+            <li>Bairro: ${novaSlash.bairro}</li>
+            <li>Rua: ${novaSlash.cidade}</li>
+        </ul>
         <button id="submit" onclick="enviarEndereco()">Enviar</button>
         `
 
@@ -227,11 +222,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
 document.addEventListener('DOMContentLoaded', function() {
     let escuro = localStorage.getItem('darkModeEnabled') === 'true';
+    let aside = document.getElementById('sidebar');
   
     if (escuro) {
-      document.body.classList.add('dark-mode'); 
-      document.header.classList.add('dark-mode'); 
+      document.body.classList.add('dark-mode');
+      aside.classList.add('dark-mode');
     }
+
+
   });
 
 
