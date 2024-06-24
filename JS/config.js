@@ -117,7 +117,7 @@ function goBack() {
         <button onclick="openPage('account')">Conta <span class="arrow">&#9654;</span></button>
         <button onclick="openPage('terms-policies')">Termos e Políticas <span class="arrow">&#9654;</span></button>
         <button onclick="openPage('report-problem')">Relatar um Problema <span class="arrow">&#9654;</span></button>
-        <button onclick="logout()">Sair <span class="arrow">&#9654;</span></button>
+        <button><a href="home.html">Voltar</a></button>
     `;
     applyDarkMode();
 }
