@@ -40,4 +40,7 @@ function confirm() {
   console.log(saldo);
   document.getElementById('saldo').innerText = `R$ ${saldo.toFixed(2)}`;
 
+  if (document.getElementById('confirm').style.display == 'block') document.getElementById('confirm').style.display = 'none';
+  else document.getElementById('confirm').style.display = 'block';
+
 }

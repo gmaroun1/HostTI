@@ -146,6 +146,33 @@ function renderUsers() {
         usersContainer.appendChild(userDiv);
     });
 }
+
+function renderProductHistory() {
+    const productHistory = document.getElementById("product-history");
+    productHistory.innerHTML = "<ul></ul>";
+    users.forEach(user => {
+        user.products.forEach((product, index) => {
+            const li = document.createElement("li");
+            li.innerHTML = `${product.name} - R$ ${product.price.toFixed(2)} <button class="remove-product-btn" onclick="removeProduct(${user.id}, ${index})">Remover</button>`;
+            productHistory.querySelector("ul").appendChild(li);
+        });
+    });
+}
+
+function removeProduct(userId, productIndex) {
+    users.forEach(user => {
+        if (user.id === userId) {
+            const removedProduct = user.products.splice(productIndex, 1)[0];
+            // Reduzir o valor pago pelo usuário
+            user.pricePaid -= removedProduct.price;  
+        }
+    });
+
+    renderUsers(); // Atualizar a exibição dos usuários na interface
+    renderProductHistory(); // Atualizar a lista de produtos na interface
+
+}
+
 document.addEventListener("DOMContentLoaded", function () {
 
     
@@ -167,18 +194,43 @@ document.addEventListener("DOMContentLoaded", function () {
             userSelection.appendChild(label);
         });
     }
+
     
-    function renderProductHistory() {
-        const productHistory = document.getElementById("product-history");
-        productHistory.innerHTML = "<ul></ul>";
-        users.forEach(user => {
-            user.products.forEach(product => {
-                const li = document.createElement("li");
-                li.textContent = `${product.name} - R$ ${product.price.toFixed(2)}`;
-                productHistory.querySelector("ul").appendChild(li);
-            });
+    
+    
+    
+    // Função para renderizar histórico de produtos
+    
+    
+    // Event listener para adicionar um produto
+    document.getElementById("confirm-product-btn").addEventListener("click", function () {
+        const productName = document.getElementById("product-name").value;
+        const productPrice = parseFloat(document.getElementById("product-price").value);
+        const selectedUsers = Array.from(document.querySelectorAll("#user-selection input:checked")).map(checkbox => parseInt(checkbox.value));
+    
+        const pricePerUser = productPrice / selectedUsers.length;
+    
+    
+        
+        products.push({ name: productName, price: productPrice });
+        
+    
+        // Atualizar pricePaid para cada usuário selecionado
+        selectedUsers.forEach(userId => {
+            const user = users.find(u => u.id === userId);
+            user.pricePaid += pricePerUser;
         });
-    }
+    
+        renderUsers(); // Atualizar a exibição dos usuários na interface
+        renderProductHistory(); // Atualizar a lista de produtos na interface
+        document.getElementById("product-form").classList.add("hidden");
+    });
+    
+    
+        renderProductHistory(); // Atualiza a lista de produtos na interface
+        
+
+    // Função para remover um produto da lista
 
     document.getElementById("add-product-btn").addEventListener("click", function () {
         document.getElementById("product-form").classList.toggle("hidden");
@@ -241,6 +293,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Config dos botões
 
+document.getElementById('confirm').style.display = 'none';
+
 document.getElementById('toggleSidebar').addEventListener('click', function() {
     document.body.classList.toggle('sidebar-open');
   });
@@ -252,5 +306,31 @@ document.getElementById('criar').addEventListener('click', function () {
 });
 
 document.getElementById('close-bill-btn').addEventListener('click', function() {
+    document.getElementById('confirm').style.display = 'block';
     document.getElementById('feedback').style.display = 'block';
 });
+
+
+// Remoção de produtos
+
+// function renderProductHistory() {
+//     const productHistory = document.getElementById("product-history");
+//     productHistory.innerHTML = "<ul></ul>";
+//     users.forEach(user => {
+//         user.products.forEach((product, index) => { // Adicione o índice do produto para identificação
+//             const li = document.createElement("li");
+//             li.innerHTML = `${product.name} - R$ ${product.price.toFixed(2)} <button class="remove-product-btn" onclick="removeProduct(${user.id}, ${index})">Remover</button>`;
+//             productHistory.querySelector("ul").appendChild(li);
+//         });
+//     });
+// }
+
+// function removeProduct(userId, productIndex) {
+//     users.forEach(user => {
+//         if (user.id === userId) {
+//             user.products.splice(productIndex, 1); // Remove o produto do array de produtos do usuário
+//         }
+//     });
+
+//     renderProductHistory(); // Atualiza a lista de produtos na interface
+// }
