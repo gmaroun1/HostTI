@@ -1,7 +1,11 @@
 let saldo = 0;
 
 function showCarteira() {
-  document.getElementById('carteira').style.display = 'block';
+  if (document.getElementById('carteira').style.display == 'block') {
+    document.getElementById('carteira').style.display = 'none';
+    document.getElementById('optionsContainer').style.display = 'none';
+  }
+  else document.getElementById('carteira').style.display = 'block';
 }
 
 function showDeposit() {
@@ -14,8 +18,6 @@ function showInput(opcao) {
     document.getElementById('optionsContainer').style.display = 'none'; // Esconder as opções de pagamento ao mostrar o input
 }
 }
-
-
 
 
 function deposit() {
@@ -33,3 +35,9 @@ function deposit() {
   alert('Depósito realizado');
 }
 
+function confirm() {
+  saldo = saldo - valorCompartilhado;
+  console.log(saldo);
+  document.getElementById('saldo').innerText = `R$ ${saldo.toFixed(2)}`;
+
+}

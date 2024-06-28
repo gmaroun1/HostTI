@@ -202,11 +202,16 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("product-form").classList.add("hidden");
     });
 
+    function setValorCompartilhado(valor) {
+        window.valorCompartilhado = valor;
+    }
+
     document.getElementById("close-bill-btn").addEventListener("click", function () {
         const totalPrice = users.reduce((sum, user) => sum + user.pricePaid, 0);
         const serviceFee = totalPrice * serviceFeePercentage;
         const appFee = totalPrice * appFeePercentage;
         const totalWithFees = totalPrice + serviceFee + appFee;
+        setValorCompartilhado(totalWithFees);
         const billSummary = document.getElementById("bill-summary");
         billSummary.innerHTML = `
         <p>Total: R$ ${totalPrice.toFixed(2)}</p>
@@ -245,8 +250,6 @@ document.getElementById('criar').addEventListener('click', function () {
 
     document.getElementById('dados').style.display = 'block';
 });
-
-
 
 document.getElementById('close-bill-btn').addEventListener('click', function() {
     document.getElementById('feedback').style.display = 'block';
