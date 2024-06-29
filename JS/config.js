@@ -123,6 +123,8 @@ function goBack() {
 }
 
 
+
+
 document.addEventListener('DOMContentLoaded', () => {
     applyDarkMode();
 });

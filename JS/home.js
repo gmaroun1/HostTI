@@ -37,17 +37,18 @@ function usuario() {
 // LOCAIS
 
 function leDados () {
-    let strDados = localStorage.getItem('locais');
+    //let strDados = localStorage.getItem('locais');
     let objDados = {};
     
-    
+    /*
     if (strDados) {
         objDados = JSON.parse (strDados);
     }
-    else {
+    else {*/
         objDados = { locais: []
-        }
-    }
+            }
+            /* 
+            }*/
 
     return objDados;
 }
@@ -58,9 +59,9 @@ function salvaDados (dados) {
 
 
 async function novaSlash() {
-    //let objDados = leDados();
 
     let a = document.getElementById('CEP').value;
+    let objDados = leDados();
     let novaSlash = {};
     if (a == "" || a.length !== 8) {
         alert('Digite um valor valido!');
@@ -91,22 +92,24 @@ async function novaSlash() {
             <li>Bairro: ${novaSlash.bairro}</li>
             <li>Rua: ${novaSlash.cidade}</li>
         </ul>
-        <button id="submit" onclick="enviarEndereco()">Enviar</button>
+        <button id="submit" onclick="enviarEndereco(novaSlash)">Enviar</button>
         `
-
-        /*
+        console.log(novaSlash);
+        console.log(objDados);
+        
         if (novaSlash != {}) {
             objDados.locais.push (novaSlash);
             salvaDados(objDados);
-        }*/
+        }
 
         
     }    
 }
     
-function enviarEndereco() {
+function enviarEndereco(data) {
     document.getElementById('dados').style.display = 'none';
     document.getElementById('mesa').style.display = 'block';
+    salvaDados(data);
 }
 
 // DIVISAO
