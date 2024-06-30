@@ -117,7 +117,7 @@ function enviarEndereco(data) {
 function addPerson() {
     document.getElementById('person-form').innerHTML = `
     <input type="text" id="person-name" placeholder="Nome da Pessoa">
-    <button id="confirm-person-btn" onclick="confirmPessoa()">Adicionar Pessoa</button>`;
+    <button id="confirm-person-btn" onclick="confirmPessoa()">Adicionar</button>`;
 
 }
 
@@ -125,6 +125,7 @@ function addPerson() {
 function confirmPessoa() {
     let nome = document.getElementById('person-name').value;
     users.push({id: users.length, name: nome, pricePaid: 0, img: "../images/fotoDeUsuario.jpg", products: []});
+    document.getElementById('person-form').innerHTML = ``;
     renderUsers();
 }
 
@@ -202,7 +203,6 @@ document.addEventListener("DOMContentLoaded", function () {
     
     
     
-    // Função para renderizar histórico de produtos
     
     
     // Event listener para adicionar um produto
@@ -233,7 +233,6 @@ document.addEventListener("DOMContentLoaded", function () {
         renderProductHistory(); // Atualiza a lista de produtos na interface
         
 
-    // Função para remover um produto da lista
 
     document.getElementById("add-product-btn").addEventListener("click", function () {
         document.getElementById("product-form").classList.toggle("hidden");
