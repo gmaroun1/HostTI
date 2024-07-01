@@ -198,117 +198,12 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-     // Objeto para armazenar informações da mesa
-     let mesaAtual = {
-        participantes: [],
-        itensConsumidos: [],
-        carteira: 0
-    };
-
-    // Verificar se já existe uma mesa em andamento no localStorage
-    const mesaSalva = JSON.parse(localStorage.getItem('mesaAtual'));
-    if (mesaSalva) {
-        mesaAtual = mesaSalva;
-        renderParticipantes(); // Renderiza participantes recuperados
-        renderProductHistory(); // Renderiza itens consumidos recuperados
-        renderCarteira(); // Renderiza a carteira recuperada
-    }
-
-    // Função para renderizar os participantes na interface
-    function renderParticipantes() {
-        const usersContainer = document.getElementById("users-container");
-        usersContainer.innerHTML = "";
-        mesaAtual.participantes.forEach(participante => {
-            const userDiv = document.createElement("div");
-            userDiv.className = "user";
-            userDiv.innerHTML = `
-            <img src="../images/fotoDeUsuario.jpg" alt="${participante.name}">
-            <div class="user-info">
-                <span>${participante.name}</span>
-                <span>Preço Pago: R$ <span class="price-paid">${participante.pricePaid.toFixed(2)}</span></span>
-            </div>
-            `;
-            usersContainer.appendChild(userDiv);
-        });
-    }
-
-    // Função para renderizar o histórico de produtos consumidos na interface
-    function renderProductHistory() {
-        const productHistory = document.getElementById("product-history");
-        productHistory.innerHTML = "<ul></ul>";
-        mesaAtual.itensConsumidos.forEach(item => {
-            const li = document.createElement("li");
-            li.innerHTML = `${item.name} - R$ ${item.price.toFixed(2)}`;
-            productHistory.querySelector("ul").appendChild(li);
-        });
-    }
-
-    // Função para renderizar a carteira na interface
-    function renderCarteira() {
-        const carteiraElement = document.getElementById("carteira");
-        carteiraElement.textContent = `Carteira: R$ ${mesaAtual.carteira.toFixed(2)}`;
-    }
-
-    // Função para adicionar um participante
-    function addParticipante(nome) {
-        const newUser = {
-            id: mesaAtual.participantes.length,
-            name: nome,
-            pricePaid: 0,
-            img: "../images/fotoDeUsuario.jpg",
-            products: []
-        };
-        mesaAtual.participantes.push(newUser);
-        saveMesaAtual();
-        renderParticipantes();
-    }
-
-    // Função para consumir um item
-    function consumirItem(nome, preco) {
-        mesaAtual.itensConsumidos.push({ name: nome, price: preco });
-        saveMesaAtual();
-        renderProductHistory();
-    }
-
-    // Função para atualizar a carteira
-    function updateCarteira(valor) {
-        mesaAtual.carteira += valor;
-        saveMesaAtual();
-        renderCarteira();
-    }
-
-    // Função para salvar mesaAtual no localStorage
-    function saveMesaAtual() {
-        localStorage.setItem('mesaAtual', JSON.stringify(mesaAtual));
-    }
-
-    // Event listener para adicionar um participante
-    document.getElementById("confirm-person-btn").addEventListener("click", function () {
-        const nome = document.getElementById('person-name').value;
-        addParticipante(nome);
-        document.getElementById('person-form').innerHTML = ``;
-    });
-
-    // Event listener para consumir um item
-    document.getElementById("confirm-product-btn").addEventListener("click", function () {
-        const productName = document.getElementById("product-name").value;
-        const productPrice = parseFloat(document.getElementById("product-price").value);
-        consumirItem(productName, productPrice);
-        document.getElementById("product-form").classList.add("hidden");
-    });
-
-    // Event listener para atualizar a carteira
-    document.getElementById("close-bill-btn").addEventListener("click", function () {
-        const totalPrice = mesaAtual.participantes.reduce((sum, participante) => sum + participante.pricePaid, 0);
-        const serviceFee = totalPrice * 0.1; // 10%
-        const appFee = totalPrice * 0.01; // 1%
-        const totalWithFees = totalPrice + serviceFee + appFee;
-        updateCarteira(totalWithFees);
-        document.getElementById("bill-summary").classList.remove("hidden");
-    });
+    
+    
+    
+        
 
 
-/*
     document.getElementById("add-product-btn").addEventListener("click", function () {
         document.getElementById("product-form").classList.toggle("hidden");
         renderUserSelection();
@@ -351,7 +246,7 @@ document.addEventListener("DOMContentLoaded", function () {
         billSummary.classList.remove("hidden");
     });
     
-    renderUsers();*/
+    renderUsers();
 });
 
 
