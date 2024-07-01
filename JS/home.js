@@ -37,18 +37,8 @@ function usuario() {
 // LOCAIS
 
 function leDados () {
-    //let strDados = localStorage.getItem('locais');
     let objDados = {};
-    
-    /*
-    if (strDados) {
-        objDados = JSON.parse (strDados);
-    }
-    else {*/
-        objDados = { locais: []
-            }
-            /* 
-            }*/
+        objDados = { locais: []}
 
     return objDados;
 }
@@ -91,15 +81,16 @@ async function novaSlash() {
             <li>Rua: ${novaSlash.rua}</li>
             <li>Bairro: ${novaSlash.bairro}</li>
             <li>Rua: ${novaSlash.cidade}</li>
-        </ul>
-        <button id="submit" onclick="enviarEndereco(novaSlash)">Enviar</button>
-        `
+            </ul>
+            <button id="submit" onclick="enviarEndereco(novaSlash)">Enviar</button>
+            `
+            //<input type="text" id="numero" placeholder="Número">
         console.log(novaSlash);
         console.log(objDados);
         
         if (novaSlash != {}) {
             objDados.locais.push (novaSlash);
-            salvaDados(objDados);
+            //salvaDados(objDados);
         }
 
         
@@ -109,7 +100,9 @@ async function novaSlash() {
 function enviarEndereco(data) {
     document.getElementById('dados').style.display = 'none';
     document.getElementById('mesa').style.display = 'block';
-    salvaDados(data);
+    //let n = document.getElementById('numero').value;
+    //novaSlash.numero = n;
+    //salvaDados(data);
 }
 
 // DIVISAO
@@ -179,8 +172,14 @@ function removeProduct(userId, productIndex) {
 
 document.addEventListener("DOMContentLoaded", function () {
 
+    let escuro = localStorage.getItem('darkModeEnabled') === 'true';
+    let aside = document.getElementById('sidebar');
+  
+    if (escuro) {
+      document.body.classList.add('dark-mode');
+      aside.classList.add('dark-mode');
+    }
     
-
 
     const serviceFeePercentage = 0.1; // 10%
     const appFeePercentage = 0.01; // 1%
@@ -199,41 +198,117 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    
-    
-    
-    
-    
-    
-    // Event listener para adicionar um produto
+     // Objeto para armazenar informações da mesa
+     let mesaAtual = {
+        participantes: [],
+        itensConsumidos: [],
+        carteira: 0
+    };
+
+    // Verificar se já existe uma mesa em andamento no localStorage
+    const mesaSalva = JSON.parse(localStorage.getItem('mesaAtual'));
+    if (mesaSalva) {
+        mesaAtual = mesaSalva;
+        renderParticipantes(); // Renderiza participantes recuperados
+        renderProductHistory(); // Renderiza itens consumidos recuperados
+        renderCarteira(); // Renderiza a carteira recuperada
+    }
+
+    // Função para renderizar os participantes na interface
+    function renderParticipantes() {
+        const usersContainer = document.getElementById("users-container");
+        usersContainer.innerHTML = "";
+        mesaAtual.participantes.forEach(participante => {
+            const userDiv = document.createElement("div");
+            userDiv.className = "user";
+            userDiv.innerHTML = `
+            <img src="../images/fotoDeUsuario.jpg" alt="${participante.name}">
+            <div class="user-info">
+                <span>${participante.name}</span>
+                <span>Preço Pago: R$ <span class="price-paid">${participante.pricePaid.toFixed(2)}</span></span>
+            </div>
+            `;
+            usersContainer.appendChild(userDiv);
+        });
+    }
+
+    // Função para renderizar o histórico de produtos consumidos na interface
+    function renderProductHistory() {
+        const productHistory = document.getElementById("product-history");
+        productHistory.innerHTML = "<ul></ul>";
+        mesaAtual.itensConsumidos.forEach(item => {
+            const li = document.createElement("li");
+            li.innerHTML = `${item.name} - R$ ${item.price.toFixed(2)}`;
+            productHistory.querySelector("ul").appendChild(li);
+        });
+    }
+
+    // Função para renderizar a carteira na interface
+    function renderCarteira() {
+        const carteiraElement = document.getElementById("carteira");
+        carteiraElement.textContent = `Carteira: R$ ${mesaAtual.carteira.toFixed(2)}`;
+    }
+
+    // Função para adicionar um participante
+    function addParticipante(nome) {
+        const newUser = {
+            id: mesaAtual.participantes.length,
+            name: nome,
+            pricePaid: 0,
+            img: "../images/fotoDeUsuario.jpg",
+            products: []
+        };
+        mesaAtual.participantes.push(newUser);
+        saveMesaAtual();
+        renderParticipantes();
+    }
+
+    // Função para consumir um item
+    function consumirItem(nome, preco) {
+        mesaAtual.itensConsumidos.push({ name: nome, price: preco });
+        saveMesaAtual();
+        renderProductHistory();
+    }
+
+    // Função para atualizar a carteira
+    function updateCarteira(valor) {
+        mesaAtual.carteira += valor;
+        saveMesaAtual();
+        renderCarteira();
+    }
+
+    // Função para salvar mesaAtual no localStorage
+    function saveMesaAtual() {
+        localStorage.setItem('mesaAtual', JSON.stringify(mesaAtual));
+    }
+
+    // Event listener para adicionar um participante
+    document.getElementById("confirm-person-btn").addEventListener("click", function () {
+        const nome = document.getElementById('person-name').value;
+        addParticipante(nome);
+        document.getElementById('person-form').innerHTML = ``;
+    });
+
+    // Event listener para consumir um item
     document.getElementById("confirm-product-btn").addEventListener("click", function () {
         const productName = document.getElementById("product-name").value;
         const productPrice = parseFloat(document.getElementById("product-price").value);
-        const selectedUsers = Array.from(document.querySelectorAll("#user-selection input:checked")).map(checkbox => parseInt(checkbox.value));
-    
-        const pricePerUser = productPrice / selectedUsers.length;
-    
-    
-        
-        products.push({ name: productName, price: productPrice });
-        
-    
-        // Atualizar pricePaid para cada usuário selecionado
-        selectedUsers.forEach(userId => {
-            const user = users.find(u => u.id === userId);
-            user.pricePaid += pricePerUser;
-        });
-    
-        renderUsers(); // Atualizar a exibição dos usuários na interface
-        renderProductHistory(); // Atualizar a lista de produtos na interface
+        consumirItem(productName, productPrice);
         document.getElementById("product-form").classList.add("hidden");
     });
-    
-    
-        renderProductHistory(); // Atualiza a lista de produtos na interface
-        
+
+    // Event listener para atualizar a carteira
+    document.getElementById("close-bill-btn").addEventListener("click", function () {
+        const totalPrice = mesaAtual.participantes.reduce((sum, participante) => sum + participante.pricePaid, 0);
+        const serviceFee = totalPrice * 0.1; // 10%
+        const appFee = totalPrice * 0.01; // 1%
+        const totalWithFees = totalPrice + serviceFee + appFee;
+        updateCarteira(totalWithFees);
+        document.getElementById("bill-summary").classList.remove("hidden");
+    });
 
 
+/*
     document.getElementById("add-product-btn").addEventListener("click", function () {
         document.getElementById("product-form").classList.toggle("hidden");
         renderUserSelection();
@@ -276,20 +351,8 @@ document.addEventListener("DOMContentLoaded", function () {
         billSummary.classList.remove("hidden");
     });
     
-    renderUsers();
+    renderUsers();*/
 });
-
-document.addEventListener('DOMContentLoaded', function() {
-    let escuro = localStorage.getItem('darkModeEnabled') === 'true';
-    let aside = document.getElementById('sidebar');
-  
-    if (escuro) {
-      document.body.classList.add('dark-mode');
-      aside.classList.add('dark-mode');
-    }
-
-
-  });
 
 
 
@@ -313,26 +376,4 @@ document.getElementById('close-bill-btn').addEventListener('click', function() {
 });
 
 
-// Remoção de produtos
 
-// function renderProductHistory() {
-//     const productHistory = document.getElementById("product-history");
-//     productHistory.innerHTML = "<ul></ul>";
-//     users.forEach(user => {
-//         user.products.forEach((product, index) => { // Adicione o índice do produto para identificação
-//             const li = document.createElement("li");
-//             li.innerHTML = `${product.name} - R$ ${product.price.toFixed(2)} <button class="remove-product-btn" onclick="removeProduct(${user.id}, ${index})">Remover</button>`;
-//             productHistory.querySelector("ul").appendChild(li);
-//         });
-//     });
-// }
-
-// function removeProduct(userId, productIndex) {
-//     users.forEach(user => {
-//         if (user.id === userId) {
-//             user.products.splice(productIndex, 1); // Remove o produto do array de produtos do usuário
-//         }
-//     });
-
-//     renderProductHistory(); // Atualiza a lista de produtos na interface
-// }
