@@ -1,24 +1,3 @@
-// Função para adicionar novo lugar ao histórico
-function addBar() {
-    var form = document.getElementById("bar-form");
-    var barName = form["bar-name"].value;
-    var barAddress = form["bar-address"].value;
-
-
-
-    // Criando um novo elemento de bloco de barra
-    var newBarBlock = document.createElement("div");
-    newBarBlock.classList.add("bar-block");
-
-    // Montando o HTML para o novo bloco de barra
-    newBarBlock.innerHTML = `
-        <p><span class="bar-name">${barName}</span></p>
-        <p class="bar-address">${barAddress}</p>
-        <p>Data da visita: ${formattedDate}</p>
-    `;
-
-
-}
 
 function carregaLocais() {
     let bares = JSON.parse(localStorage.getItem('bares'));
@@ -54,3 +33,11 @@ function carregaLocais() {
 document.addEventListener('DOMContentLoaded', function() {
     carregaLocais();
 });
+
+ let escuro = localStorage.getItem('darkModeEnabled') === 'true';
+    let aside = document.getElementById('sidebar');
+  
+    if (escuro) {
+      document.body.classList.add('dark-mode');
+      aside.classList.add('dark-mode');
+    }
