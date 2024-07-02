@@ -36,12 +36,17 @@ function deposit() {
 }
 
 function confirm() {
-  saldo = saldo - valorCompartilhado;
-  alert('Pagamento efetuado!');
-  console.log(saldo);
-  document.getElementById('saldo').innerText = `R$ ${saldo.toFixed(2)}`;
-
-  if (document.getElementById('confirm').style.display == 'block') document.getElementById('confirm').style.display = 'none';
-  else document.getElementById('confirm').style.display = 'block';
+  if (saldo < valorCompartilhado) {
+    alert('Saldo insuficiente!');
+  }
+  else {
+    saldo = saldo - valorCompartilhado;
+    alert('Pagamento efetuado!');
+    console.log(saldo);
+    document.getElementById('saldo').innerText = `R$ ${saldo.toFixed(2)}`;
+    
+    if (document.getElementById('confirm').style.display == 'block') document.getElementById('confirm').style.display = 'none';
+    else document.getElementById('confirm').style.display = 'block';
+  }
 
 }
