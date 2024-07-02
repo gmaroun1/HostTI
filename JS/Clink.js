@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+/*document.addEventListener('DOMContentLoaded', function() {
     const container = document.querySelector('.container-link');
     const inviteLinkDiv = document.getElementById('invite-link');
     const copyLinkBtn = document.getElementById('copy-link');
@@ -27,5 +27,5 @@ document.addEventListener('DOMContentLoaded', function() {
 
     
 
-});
+});*/
 

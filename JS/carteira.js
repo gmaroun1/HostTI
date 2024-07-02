@@ -37,6 +37,7 @@ function deposit() {
 
 function confirm() {
   saldo = saldo - valorCompartilhado;
+  alert('Pagamento efetuado!');
   console.log(saldo);
   document.getElementById('saldo').innerText = `R$ ${saldo.toFixed(2)}`;
 

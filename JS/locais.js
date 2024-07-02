@@ -3,19 +3,8 @@ function addBar() {
     var form = document.getElementById("bar-form");
     var barName = form["bar-name"].value;
     var barAddress = form["bar-address"].value;
-    var visitDate = form["visit-date"].value;
 
-    // Dividindo a data em partes (ano, mês, dia)
-    var parts = visitDate.split('-');
-    var year = parseInt(parts[0]);
-    var month = parseInt(parts[1]) - 1; // Subtraímos 1 do mês porque em JavaScript os meses são indexados de 0 a 11
-    var day = parseInt(parts[2]);
 
-    // Criando um objeto de data com o ano, mês e dia corretos
-    var dateObject = new Date(year, month, day);
-
-    // Formatando a data para o formato brasileiro "dd/mm/yyyy"
-    var formattedDate = `${dateObject.getDate().toString().padStart(2, '0')}/${(dateObject.getMonth() + 1).toString().padStart(2, '0')}/${dateObject.getFullYear()}`;
 
     // Criando um novo elemento de bloco de barra
     var newBarBlock = document.createElement("div");
@@ -28,16 +17,40 @@ function addBar() {
         <p>Data da visita: ${formattedDate}</p>
     `;
 
-    // Adicionando o novo bloco de barra ao histórico
-    var historySection = document.querySelector(".history-section");
-    historySection.insertBefore(newBarBlock, document.getElementById("add-bar-form"));
-    
-    // Limpar o formulário após adicionar o novo lugar
-    form.reset();
+
 }
 
-// Adicionar um ouvinte de evento para o formulário de envio
-document.getElementById("bar-form").addEventListener("submit", function(event) {
-    event.preventDefault(); // Impedir o comportamento padrão do formulário
-    addBar(); // Chamar a função para adicionar o novo lugar
+function carregaLocais() {
+    let bares = JSON.parse(localStorage.getItem('bares'));
+
+    let locaisContainer = document.getElementById('bares');
+
+    //console.log(locais);
+
+    if (Array.isArray(bares.locais)) {
+        // Iterar sobre o vetor locais
+        bares.locais.forEach(local => {
+            // Criar um elemento div para cada local
+            let localDiv = document.createElement('div');
+            localDiv.classList.add('local-block'); // Adicionar uma classe para estilização CSS
+
+            // Montar o HTML interno do bloco do local
+            localDiv.innerHTML = `
+                <h3>${local.nome}</h3>
+                <p>${local.rua} Nº ${local.numero}</p>
+                <p>Bairro: ${local.bairro}</p>
+                <p>Cidade: ${local.cidade}</p>
+            `;
+
+            // Adicionar o bloco do local ao contêiner
+            locaisContainer.appendChild(localDiv);
+        });
+    } else {
+        // Se locais não existir ou não for um array, exibir uma mensagem ou tratar conforme necessário
+        locaisContainer.innerHTML = '<p>Nenhum local encontrado.</p>';
+    }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    carregaLocais();
 });

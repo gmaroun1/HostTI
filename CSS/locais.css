@@ -2,55 +2,53 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #9813c0;
+    background-color: #fff
 }
 
 header {
-    background-color: #9813c0;
-    color:black;
+    background-color: rgb(78, 3, 121);
+    color:rgb(255, 193, 0);
     text-align: center;
     padding: 20px 0;
+    letter-spacing: 2px;
+    font-weight: 400;
+    font-size: large;
 }
 
 .history-section {
     padding: 20px;
     margin: 20px auto;
     max-width: 600px;
-    background-color: #ffbb00;
     border-radius: 8px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+#bares div {
+    background-color: #fff;
+    padding: 15px;
+    margin-top: 20px;
+    border-radius: 15px;
+    border-width: 2px;
+    border-color: black;
+    border-style: solid;
 }
 
 h2 {
     margin-top: 0;
 }
 
-.bar-block {
-    margin-bottom: 20px;
-    padding: 10px;
-    border: 1px solid black;
+button {
+    color: white;
+    padding: 10px 20px;
+    margin: 5px;
+    font-size: 16px;
+    background-color:rgb(102, 6, 158);
     border-radius: 8px;
+    border-color: rgb(50, 25, 83);
+    box-shadow:  0px 10px 40px #00000056;
+    text-decoration: none;
 }
 
-.bar-name {
-    font-weight: bold;
-}
-
-.bar-address {
-    color: black;
-}
-.voltar{
-    text-align: center;
-}
-.voltar button {
-    background: #4caf50;
-    padding: 10px;
-    border-radius: 4px;
-    border: 1;
-    border-color: #fff;
-}
-
-.voltar a {
-    color: #fff;
+a.botao {
+    color: white;
     text-decoration: none;
 }

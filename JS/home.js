@@ -36,24 +36,27 @@ function usuario() {
 
 // LOCAIS
 
-function leDados () {
-    let objDados = {};
-        objDados = { locais: []}
+function leDadosLocal () {
+    let strDados = localStorage.getItem('bares');
+    let objDados = { locais:[] };
+
+    if (strDados) objDados = JSON.parse (strDados);
+
 
     return objDados;
 }
 
 function salvaDados (dados) {
-    localStorage.setItem ('locais', JSON.stringify (dados));
+    localStorage.setItem ('bares', JSON.stringify (dados));
 }
 
 
 async function novaSlash() {
 
     let a = document.getElementById('CEP').value;
-    let objDados = leDados();
-    let novaSlash = {};
-    if (a == "" || a.length !== 8) {
+    let b = document.getElementById('numero').value;
+    let c = document.getElementById('nome').value;
+    if (a == "" || a.length !== 8 || b == "" || c == "") {
         alert('Digite um valor valido!');
         }
     
@@ -66,43 +69,84 @@ async function novaSlash() {
                 alert('erro');
             }
             else {
-                novaSlash = {
+                local = {
+                    nome: c,
                     rua: data.logradouro,
                     bairro: data.bairro,
-                    cidade: data.localidade
+                    cidade: data.localidade,
+                    numero: b
                 }
             }
 
         })
 
 
+
         dadosCEP.innerHTML = `
         <ul>
-            <li>Rua: ${novaSlash.rua}</li>
-            <li>Bairro: ${novaSlash.bairro}</li>
-            <li>Rua: ${novaSlash.cidade}</li>
+            <p>${local.nome}<p>
+            <p>${local.rua} Nº ${local.numero}</p>
+            <p>${local.bairro}</p>
+            <p>${local.cidade}</p>
             </ul>
-            <button id="submit" onclick="enviarEndereco(novaSlash)">Enviar</button>
+            <button id="submit" onclick="enviarEndereco()">Criar Mesa</button>
             `
-            //<input type="text" id="numero" placeholder="Número">
-        console.log(novaSlash);
-        console.log(objDados);
+
+        //console.log(local);
+        //console.log(objDados);
         
-        if (novaSlash != {}) {
-            objDados.locais.push (novaSlash);
-            //salvaDados(objDados);
-        }
+        
+        
 
         
     }    
 }
     
-function enviarEndereco(data) {
+async function enviarEndereco() {
+    let objDados = leDadosLocal();
+
+    let a = document.getElementById('CEP').value;
+    let b = document.getElementById('numero').value;
+    let c = document.getElementById('nome').value;
+
+    fetch(`https://viacep.com.br/ws/${a}/json/`)
+        .then(res => {
+            return res.json()
+        }).then((data) => {
+            if (data.erro) {
+                alert('erro');
+            }
+            else {
+                local = {
+                    nome: c,
+                    rua: data.logradouro,
+                    bairro: data.bairro,
+                    cidade: data.localidade,
+                    numero: b
+                }
+            }
+
+        })
+
+        if (!Array.isArray(objDados.locais)) {
+            objDados.locais = [];
+        }
+
+
+        objDados.locais.push (local);
+
+        console.log(local);
+
+        
+        salvaDados(objDados);
+    let name = document.getElementById('nomeDoLugar');
+
+    name.innerHTML = `
+        <h1>${c}</h1>
+    `;
+
     document.getElementById('dados').style.display = 'none';
     document.getElementById('mesa').style.display = 'block';
-    //let n = document.getElementById('numero').value;
-    //novaSlash.numero = n;
-    //salvaDados(data);
 }
 
 // DIVISAO
